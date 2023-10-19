@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Samsung",
+    "brandName": "samsung",
+    "image": "https://i.ibb.co/S7YBmD9/samsung-logo-PNG16.png"
+  },
+  {
+    "id": 2,
+    "title": "HP",
+    "brandName": "hp",
+    "image": "https://i.ibb.co/DrsS4CL/Logo-1-dont.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Dell",
+    "brandName": "dell",
+    "image": "https://i.ibb.co/gFPbr4Z/445-dell.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Apple",
+    "brandName": "apple",
+    "image": "https://i.ibb.co/pfWhvX7/apple-logo-1988.webp"
+  },
+  {
+    "id": 5,
+    "title": "Xiaomi",
+    "brandName": "xiaomi",
+    "image": "https://i.ibb.co/Rh2P9n1/Xiaomi-logo-svg.png"
+  },
+  {
+    "id": 6,
+    "title": "Asus",
+    "brandName": "asus",
+    "image": "https://i.ibb.co/jyTL8tq/424-asus.jpg"
+  }
+]

@@ -6,6 +6,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import PrivateRouter from "../privateRouter/PrivateRouter";
+import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 
 const Router = createBrowserRouter([
   {
@@ -16,6 +17,12 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch("/brand.json"),
+      },
+      {
+        path: "/category/:brandName",
+        element: <CategoryDetails></CategoryDetails>,
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/addproduct",

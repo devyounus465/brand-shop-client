@@ -5,13 +5,23 @@ const AddProduct = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const brandName = form.brandName.value;
+    const brand = form.brandName.value;
+    const brandName = brand.toLowerCase();
     const type = form.type.value;
     const price = form.price.value;
     const image = form.image.value;
     const rating = form.rating.value;
+    const description = form.description.value;
 
-    const newproduct = { name, brandName, type, price, image, rating };
+    const newproduct = {
+      name,
+      brandName,
+      type,
+      price,
+      image,
+      rating,
+      description,
+    };
     console.log(newproduct);
 
     //   send data to server
@@ -127,6 +137,23 @@ const AddProduct = () => {
                   name="rating"
                   placeholder="Rating"
                   className="input input-bordered w-full"
+                />
+              </label>
+            </div>
+          </div>
+          {/* row sort description */}
+          <div className="flex gap-6">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Sort Description</span>
+              </label>
+              <label className="">
+                <textarea
+                  name="description"
+                  placeholder="sort description"
+                  rows="6"
+                  cols="50"
+                  className="w-full p-4 border rounded"
                 />
               </label>
             </div>
