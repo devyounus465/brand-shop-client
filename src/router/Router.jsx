@@ -27,7 +27,7 @@ const Router = createBrowserRouter([
         element: <CategoryDetails></CategoryDetails>,
         loader: () =>
           fetch(
-            "https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/products"
+            "https://brand-shop-server-d3hs6p0hk-younus-alis-projects.vercel.app/products"
           ),
       },
       {
@@ -35,7 +35,7 @@ const Router = createBrowserRouter([
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
           fetch(
-            `https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/products/${params.id}`
+            `https://brand-shop-server-d3hs6p0hk-younus-alis-projects.vercel.app/products/${params.id}`
           ),
       },
       {
@@ -47,7 +47,7 @@ const Router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/products/${params.id}`
+            `https://brand-shop-server-d3hs6p0hk-younus-alis-projects.vercel.app/products/${params.id}`
           ),
       },
       {
@@ -67,7 +67,7 @@ const Router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            "https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/cart"
+            "https://brand-shop-server-d3hs6p0hk-younus-alis-projects.vercel.app/cart"
           ),
       },
       {

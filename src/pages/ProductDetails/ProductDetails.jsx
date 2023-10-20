@@ -9,7 +9,7 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     fetch(
-      "https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/cart",
+      "https://brand-shop-server-d3hs6p0hk-younus-alis-projects.vercel.app/cart",
       {
         method: "POST",
         headers: {

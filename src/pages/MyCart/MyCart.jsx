@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 
 const MyCart = () => {
   const cartProduct = useLoaderData();
+
   // table counter
   let count = 1;
 
