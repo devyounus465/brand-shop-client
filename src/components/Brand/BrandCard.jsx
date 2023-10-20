@@ -5,7 +5,7 @@ const BrandCard = ({ brand }) => {
     <div>
       <Link to={`/category/${brand.brandName}`}>
         <div className="relative flex flex-col text-gray-700 bg-white shadow-md  rounded-xl bg-clip-border">
-          <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white  h-40 rounded-xl bg-clip-border">
+          <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white  h-20 md:h-40 rounded-xl bg-clip-border">
             <img
               className="w-60 mx-auto"
               src={brand.image}
