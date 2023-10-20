@@ -1,7 +1,41 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import swal from "sweetalert";
 
 const MyCart = () => {
-  const cartProduct = useLoaderData();
+  const loadedCartProduct = useLoaderData();
+  const [cartProduct, setCartproduct] = useState(loadedCartProduct);
+
+  // delete cart
+
+  const handleDelete = (id) => {
+    console.log(id);
+    fetch(
+      `https://brand-shop-server-kykx7dq2b-younus-alis-projects.vercel.app/cart/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          console.log("Cart Product deleted successfully");
+
+          swal({
+            title: "Good job!",
+            text: "Cart Product deleted successfully!",
+            icon: "success",
+            button: "Close",
+          });
+
+          // remaining user
+
+          const remainingCart = cartProduct.filter((cart) => cart._id !== id);
+          console.log(remainingCart);
+          setCartproduct(remainingCart);
+        }
+      });
+  };
 
   // table counter
   let count = 1;
@@ -18,6 +52,7 @@ const MyCart = () => {
               <th>Brand</th>
               <th>Type</th>
               <th>Price</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -28,6 +63,14 @@ const MyCart = () => {
                 <td>{cart.brandName}</td>
                 <td>{cart.type}</td>
                 <td>{cart.price}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(cart._id)}
+                    className="btn bg-red-400 text-white"
+                  >
+                    X
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
