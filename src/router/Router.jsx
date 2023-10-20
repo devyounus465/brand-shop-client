@@ -25,13 +25,18 @@ const Router = createBrowserRouter([
       {
         path: "/category/:brandName",
         element: <CategoryDetails></CategoryDetails>,
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch(
+            "https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/products"
+          ),
       },
       {
         path: "/updateproduct/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/productdetails/:id",
@@ -41,7 +46,9 @@ const Router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/addproduct",
@@ -58,7 +65,10 @@ const Router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRouter>
         ),
-        loader: () => fetch("http://localhost:5000/cart"),
+        loader: () =>
+          fetch(
+            "https://brand-shop-server-cxey3l6z4-younus-alis-projects.vercel.app/cart"
+          ),
       },
       {
         path: "register",
