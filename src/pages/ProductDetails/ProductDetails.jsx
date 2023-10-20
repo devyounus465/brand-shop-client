@@ -1,8 +1,36 @@
-import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import swal from "sweetalert";
 
-const CategoryProductsCard = ({ product }) => {
+const ProductDetails = () => {
+  const product = useLoaderData();
+  //   console.log(product);
+
+  // data store client side to server side ===> database
+
+  const handleAddToCart = () => {
+    fetch("http://localhost:5000/cart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          swal({
+            title: "Good job!",
+            text: "product Added to Cart!",
+            icon: "success",
+            button: "Close",
+          });
+        }
+      });
+  };
+
   return (
-    <div>
+    <div className=" w-8/12 mx-auto mt-12 mb-12">
       <div className="relative flex w-full  flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
         <div className="relative mx-4 mt-4 overflow-hidden text-white  rounded-xl  ">
           <img src={product.image} alt="ui/ux review check" />
@@ -31,41 +59,34 @@ const CategoryProductsCard = ({ product }) => {
             </p>
           </div>
 
-          <div className="inline-flex flex-wrap items-center gap-3 mt-4 group">
+          <div className=" gap-3 space-y-3 mt-4 group">
             <h4 className="text-lg font-medium capitalize">
               Brand: {product.brandName}
             </h4>
             <h4 className="text-lg font-medium capitalize">
               Type: {product.type}
             </h4>
-            <h4 className="text-lg font-bold capitalize text-pink-500">
+            <h4 className="text-2xl font-bold capitalize text-pink-500">
               Price: ${product.price}
             </h4>
           </div>
+          <div className="mt-3">
+            <p>{product.description}</p>
+          </div>
         </div>
         <div className="p-6 pt-3 flex justify-between gap-3">
-          <Link to={`/productdetails/${product._id}`}>
-            <button
-              className="block w-full select-none rounded-lg bg-pink-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button"
-              data-ripple-light="true"
-            >
-              Details
-            </button>
-          </Link>
-          <Link to={`/updateproduct/${product._id}`}>
-            <button
-              className="block w-full select-none rounded-lg bg-pink-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="button"
-              data-ripple-light="true"
-            >
-              Update
-            </button>
-          </Link>
+          <button
+            onClick={handleAddToCart}
+            className="block w-full select-none rounded-lg bg-pink-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"
+            data-ripple-light="true"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default CategoryProductsCard;
+export default ProductDetails;

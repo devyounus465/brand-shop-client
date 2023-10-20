@@ -43,6 +43,20 @@ const Header = () => {
             ) : (
               ""
             )}
+            {user ? (
+              <li className="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
+                <NavLink
+                  to={"/mycart"}
+                  className={({ isActive }) =>
+                    isActive ? '"flex items-center" text-pink-500' : ""
+                  }
+                >
+                  My Cart
+                </NavLink>
+              </li>
+            ) : (
+              ""
+            )}
             <li className="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <NavLink
                 to={"/register"}

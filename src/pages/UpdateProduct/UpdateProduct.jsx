@@ -1,7 +1,14 @@
+import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
 
-const AddProduct = () => {
-  const handleAddProduct = (e) => {
+const UpdateProduct = () => {
+  const products = useLoaderData();
+  console.log(products);
+
+  const { _id, image, name, brandName, type, price, rating, description } =
+    products;
+
+  const handleUpdateProduct = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -13,7 +20,7 @@ const AddProduct = () => {
     const rating = form.rating.value;
     const description = form.description.value;
 
-    const newproduct = {
+    const updatedProduct = {
       name,
       brandName,
       type,
@@ -22,38 +29,36 @@ const AddProduct = () => {
       rating,
       description,
     };
-    console.log(newproduct);
 
-    //   send data to server
+    //   data send to server for update database
 
-    fetch("http://localhost:5000/products", {
-      method: "POST",
+    fetch(`http://localhost:5000/products/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newproduct),
+      body: JSON.stringify(updatedProduct),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           swal({
             title: "Good job!",
-            text: "You Added a product successfully!",
+            text: "You Updated the Product successfully!",
             icon: "success",
-            button: "Close",
+            button: "Close!",
           });
         }
       });
   };
-
   return (
     <div>
       <div className="w-10/12 mx-auto bg-gray-100 p-8 mt-12 mb-12 rounded">
         <h2 className="text-4xl font-semibold text-center mb-4">
           Add a New Product
         </h2>
-        <form onSubmit={handleAddProduct} className="space-y-2">
+        <form onSubmit={handleUpdateProduct} className="space-y-2">
           {/* row name & brand Name */}
           <div className="flex gap-6">
             <div className="form-control w-full">
@@ -64,6 +69,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={name}
                   placeholder="Product Name"
                   className="input input-bordered w-full"
                 />
@@ -77,6 +83,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="brandName"
+                  defaultValue={brandName}
                   placeholder="Brand Name"
                   className="input input-bordered w-full"
                 />
@@ -93,6 +100,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="type"
+                  defaultValue={type}
                   placeholder="ex:phone,headphone"
                   className="input input-bordered w-full"
                 />
@@ -106,6 +114,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="price"
+                  defaultValue={price}
                   placeholder="$Price"
                   className="input input-bordered w-full"
                 />
@@ -122,6 +131,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="image"
+                  defaultValue={image}
                   placeholder="Image url"
                   className="input input-bordered w-full"
                 />
@@ -135,6 +145,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="rating"
+                  defaultValue={rating}
                   placeholder="Rating"
                   className="input input-bordered w-full"
                 />
@@ -150,6 +161,7 @@ const AddProduct = () => {
               <label className="">
                 <textarea
                   name="description"
+                  defaultValue={description}
                   placeholder="sort description"
                   rows="6"
                   cols="50"
@@ -171,4 +183,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;
